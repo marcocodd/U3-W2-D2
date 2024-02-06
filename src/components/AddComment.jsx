@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Button, Form } from 'react-bootstrap'
-
+//da modificare
 class AddComment extends Component {
   state = {
     comment: {
