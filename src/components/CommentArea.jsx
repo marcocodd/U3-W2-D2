@@ -39,38 +39,37 @@ const [isError, setIsError]=useState(false)
   //   }
   // }
   useEffect(() => {
-    const fetchComments = () => {
-      setIsLoading(true);
-      fetch(
-        'https://striveschool-api.herokuapp.com/api/comments/' +props.asin,
-        {
-          headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWJiYTg1MDViMjYxNTAwMTk4YTY5NjkiLCJpYXQiOjE3MDY3OTcxMzYsImV4cCI6MTcwODAwNjczNn0.g8GkMnP6jl2Xm1PTrGmbj0dGDqT3zWqs43Wa5yL3BSA',
-          },
-        }
-      )
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            setIsLoading(false);
-            setIsError(true);
-            throw new Error('Errore durante il recupero dei dati');
-          }
-        })
-        .then(comments => {
-          setComments(comments);
-          setIsLoading(false);
-          setIsError(false);
-        })
-        .catch(error => {
-          console.error('Errore:', error);
-          setIsLoading(false);
-          setIsError(true);
-        });
-    };
-  
+   const fetchComments = () => {
+    setIsLoading(true);
+    fetch("https://striveschool-api.herokuapp.com/api/comments/" + props.asin, {
+     headers: {
+      Authorization:
+       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWJiYTg1MDViMjYxNTAwMTk4YTY5NjkiLCJpYXQiOjE3MDY3OTcxMzYsImV4cCI6MTcwODAwNjczNn0.g8GkMnP6jl2Xm1PTrGmbj0dGDqT3zWqs43Wa5yL3BSA",
+     },
+    })
+     .then((response) => {
+      if (response.ok) {
+       return response.json();
+      } else {
+       setIsLoading(false);
+       setIsError(true);
+       throw new Error("Errore durante il recupero dei dati");
+      }
+     })
+     .then((comments) => {
+      setComments(comments);
+      setIsLoading(false);
+      setIsError(false);
+     })
+     .catch((error) => {
+      console.error("Errore:", error);
+      setIsLoading(false);
+      setIsError(true);
+     });
+   };
+   if (props.asin) {
     fetchComments();
+   }
   }, [props.asin, comments._id]);
   
   
